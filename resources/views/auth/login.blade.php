@@ -26,10 +26,10 @@
           alt="Logo Muhammadiyah">
       </div>
       <div class="card-body">
-        {{-- <form action="{{ route('login') }}" method="post"> --}}
+        <form action="{{ route('login') }}" method="post">
         <form action="#" method="post">
           @csrf
-          @error('username')
+          @error('login')
             <div class="alert alert-danger alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <h5><i class="icon fas fa-ban"></i> Alert!</h5>
@@ -44,8 +44,8 @@
             </div>
           @enderror
           <div class="input-group mb-3">
-            <input type="text" name="username" id="username" class="form-control" placeholder="Username"
-              value="{{ old('username') }}" required autofocus>
+            <input type="text" name="login" id="username" class="form-control" placeholder="Username/Email"
+              value="{{ old('login') }}" required autofocus>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-user"></span>

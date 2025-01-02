@@ -16,12 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect(route('login'));
 });
 
-Route::get('/', [LoginController::class, 'index'])->name('login.index');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-
 Route::resource('dashboard/data-keuangan', DataKeuanganController::class);
+
