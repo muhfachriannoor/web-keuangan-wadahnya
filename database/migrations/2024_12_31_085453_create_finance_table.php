@@ -11,18 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('finance', function (Blueprint $table) {
+        Schema::create('finances', function (Blueprint $table) {
             $table->id();
             $table->date('date');
             $table->string('about');
+            $table->integer('pcs');
             $table->integer('price');
             $table->integer('cash_in');
             $table->integer('cash_out');
             $table->integer('balance');
-            $table->unsignedBigInteger('input_by');
+            $table->foreignId('user_id')
+                  ->constrained('users')
+                  ->cascadeOnUpdate()
+                  ->restrictOnDelete();
             $table->timestamps();
-
-            $table->foreign('input_by')->references('id')->on('users');
+            $table->softDeletes();
         });
     }
 
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('finance');
+        Schema::dropIfExists('finances');
     }
 };

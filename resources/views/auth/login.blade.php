@@ -44,7 +44,7 @@
             </div>
           @enderror
           <div class="input-group mb-3">
-            <input type="text" name="login" id="username" class="form-control" placeholder="Username/Email"
+            <input type="email" name="login" id="email" class="form-control" placeholder="Email"
               value="{{ old('login') }}" required autofocus>
             <div class="input-group-append">
               <div class="input-group-text">
