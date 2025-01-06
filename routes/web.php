@@ -3,6 +3,7 @@
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\DataKeuangan\DataKeuanganController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,9 +24,5 @@ Route::get('/', function () {
     return redirect(route('login'));
 });
 
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 Route::resource('dashboard/data-keuangan', DataKeuanganController::class);
-

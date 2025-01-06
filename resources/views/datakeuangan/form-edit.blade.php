@@ -40,55 +40,56 @@
               </ul>
             </div>
           @endif --}}
-          <div class="card card-primary">
+          <div class="card card-warning">
             <div class="card-header">
-              <h3 class="card-title">Tambah Data</h3>
+              <h3 class="card-title">Edit Data</h3>
             </div>
             <!-- form start -->
-            <form action="{{ route('data-keuangan.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('dashboard/data-keuangan', $data_keuangan->id) }}" method="POST" enctype="multipart/form-data">
               @csrf
+              @method('PUT')
               <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label> Tanggal </label>
-                            <input type="date" class="form-control" name="date" required>
+                            <input type="date" class="form-control" value="{{ $data_keuangan->date }}" name="date" required>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label> Perihal </label>
-                            <input type="text" name="about" class="form-control" placeholder="Masukkan Perihal; Ex: Uang Parkir;" required>
+                            <input type="text" name="about" class="form-control" value="{{ $data_keuangan->about }}" placeholder="Masukkan Perihal; Ex: Uang Parkir;" required>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label> PCS </label>
-                            <input type="number" name="pcs" class="form-control" required>
+                            <input type="number" name="pcs" class="form-control" value="{{ $data_keuangan->pcs }}" required>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label> Harga </label>
-                            <input type="number" name="price" class="form-control" required>
+                            <input type="number" name="price" class="form-control" value="{{ $data_keuangan->price }}" required>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label> Uang Masuk </label>
-                            <input type="number" name="cash_in" class="form-control" required>
+                            <input type="number" name="cash_in" class="form-control" value="{{ $data_keuangan->cash_in }}" required>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label> Uang Keluar </label>
-                            <input type="number" name="cash_out" class="form-control" required>
+                            <input type="number" name="cash_out" class="form-control" value="{{ $data_keuangan->cash_out }}" required>
                         </div>
                     </div>
                 </div>
               </div>
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="submit" class="btn btn-warning">Ubah</button>
                 <a class="btn btn-success" href="{{ url()->previous() }}"> Kembali</a>
               </div>
             </form>

@@ -38,6 +38,12 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body">
+            @if(session()->has('success'))
+                <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ session()->get('success') }}
+                </div>
+            @endif
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
@@ -53,62 +59,27 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {{-- @foreach ($data as $key => $value)
-                    <tr>
-                      <td>{{ $loop->iteration }}</td>
-                      <td>{{ $value->tingkat_kelas->tingkat_kelas }}</td>
-                      <td>{{ $value->nama_kelas }}</td>
-                      <td>
-                        <form action="{{ route('kelas.destroy', $value->id) }}" method="POST">
-                          <a class="btn btn-primary" href="{{ route('kelas.edit', $value->id) }}">Ubah</a>
+                    @foreach($finances as $key => $value)
+                  <tr>
+                    <td>{{ $key+1 }}</td>
+                    <td>{{ $value->date }}</td>
+                    <td>{{ $value->about }}</td>
+                    <td>{{ $value->pcs }}</td>
+                    <td>{{ $value->user->name }}</td>
+                    <td>{{ $value->cash_in }}</td>
+                    <td>{{ $value->cash_out }}</td>
+                    <td>{{ $value->price }}</td>
+                    <td>
+                        <form action="{{ url('dashboard/data-keuangan', $value->id) }}" method="POST">
+                          <a class="btn btn-primary" href="{{ url('dashboard/data-keuangan/'.$value->id.'/edit') }}">Ubah</a>
                           @csrf
                           @method('DELETE')
                           <button type="submit" class="btn btn-danger"
                             onclick="return confirm('Hapus Data?')">Hapus</button>
                         </form>
                       </td>
-                    </tr>
-                  @endforeach --}}
-                  <tr>
-                    <td>1</td>
-                    <td>01 November 2024</td>
-                    <td>Modal</td>
-                    <td>-</td>
-                    <td>Abdillah</td>
-                    <td>Rp. 500.000</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>
-                        {{-- <form action="{{ route('kelas.destroy', $value->id) }}" method="POST"> --}}
-                          {{-- <a class="btn btn-primary" href="{{ route('kelas.edit', $value->id) }}">Ubah</a> --}}
-                          <a class="btn btn-primary" href="#">Ubah</a>
-                          {{-- @csrf
-                          @method('DELETE') --}}
-                          <button type="submit" class="btn btn-danger"
-                            onclick="return confirm('Hapus Data?')">Hapus</button>
-                        {{-- </form> --}}
-                      </td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>01 November 2024</td>
-                    <td>Pengamen</td>
-                    <td>-</td>
-                    <td>Abdillah</td>
-                    <td>-</td>
-                    <td>Rp. 1000</td>
-                    <td>-</td>
-                    <td>
-                        {{-- <form action="{{ route('kelas.destroy', $value->id) }}" method="POST"> --}}
-                          {{-- <a class="btn btn-primary" href="{{ route('kelas.edit', $value->id) }}">Ubah</a> --}}
-                          <a class="btn btn-primary" href="#">Ubah</a>
-                          {{-- @csrf
-                          @method('DELETE') --}}
-                          <button type="submit" class="btn btn-danger"
-                            onclick="return confirm('Hapus Data?')">Hapus</button>
-                        {{-- </form> --}}
-                      </td>
-                  </tr>
+                  @endforeach
                 </tbody>
               </table>
             </div>
