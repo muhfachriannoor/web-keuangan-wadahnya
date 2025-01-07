@@ -223,7 +223,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#"
+                <a href="{{ route('data-akun.index') }}"
                   class="nav-link {{ $title == 'Data Akun' ? 'active' : '' }}">
                   <i class="nav-icon fas fa-users"></i>
                   <p>
