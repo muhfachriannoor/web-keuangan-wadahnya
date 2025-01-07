@@ -29,7 +29,7 @@
             <div class="small-box bg-info">
               <div class="inner">
                 {{-- <h3>{{ $hitung_tahunAjaran }}</h3> --}}
-                <h3>2</h3>
+                <h3>{{ $countDataKeuangan }}</h3>
                 <p>Data Keuangan</p>
               </div>
               <div class="icon">
@@ -37,7 +37,7 @@
               </div>
               {{-- <a href="{{ route('tahun-ajaran.index') }}" class="small-box-footer">Lihat Data <i
                   class="fas fa-arrow-circle-right"></i></a> --}}
-                <a href="#" class="small-box-footer">Lihat Data <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('data-keuangan.index') }}" class="small-box-footer">Lihat Data <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -46,7 +46,7 @@
             <div class="small-box bg-success">
               <div class="inner">
                 {{-- <h3>{{ $hitung_kelas }}</h3> --}}
-                <h3>1</h3>
+                <h3>{{ $countDataAkun }}</h3>
                 <p>Data Akun</p>
               </div>
               <div class="icon">
@@ -54,7 +54,7 @@
               </div>
               {{-- <a href="{{ route('kelas.index') }}" class="small-box-footer">Lihat Data <i
                   class="fas fa-arrow-circle-right"></i></a> --}}
-                <a href="#" class="small-box-footer">Lihat Data <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('data-akun.index') }}" class="small-box-footer">Lihat Data <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>
