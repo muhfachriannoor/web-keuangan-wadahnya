@@ -15,9 +15,31 @@ class DataKeuanganController extends Controller
   public function index(): View
   {
     $title = 'Data Keuangan';
-    $finances = Finance::all();
 
-    return view('datakeuangan/index', compact('title', 'finances'));
+    return view('datakeuangan/index', compact('title'));
+  }
+
+  public function dataDateRange(Request $request)
+  {
+    $title = 'Data Keuangan';
+    $finances = Finance::whereBetween('date', [$_GET['start_date'], $_GET['end_date']])->get();
+
+    $sumCashIn = $finances->sum('cash_in');
+    $sumCashOut = $finances->sum('cash_out');
+    $balance = $sumCashIn - $sumCashOut;
+
+    return view('datakeuangan/daterange-data', compact('title', 'finances', 'balance'));
+  }
+
+  public function print(Request $request)
+  {
+    $finances = Finance::whereBetween('date', [$_GET['start_date'], $_GET['end_date']])->get();
+
+    $sumCashIn = $finances->sum('cash_in');
+    $sumCashOut = $finances->sum('cash_out');
+    $balance = $sumCashIn - $sumCashOut;
+
+    return view('datakeuangan/print', compact('finances', 'balance'));
   }
 
   public function create(): View
@@ -31,7 +53,7 @@ class DataKeuanganController extends Controller
 
       $input = $request->all();
 
-      $input['balance'] = ($request->price + $request->cash_in) - $request->cash_out;
+      // $input['balance'] = ($request->price + $request->cash_in) - $request->cash_out;
       $input['user_id'] = auth()->id();
 
       Finance::create($input);
@@ -49,7 +71,7 @@ class DataKeuanganController extends Controller
   {
       $input = $request->all();
 
-      $input['balance'] = ($request->price + $request->cash_in) - $request->cash_out;
+      // $input['balance'] = ($request->price + $request->cash_in) - $request->cash_out;
       $input['user_id'] = auth()->id();
 
       $data_keuangan->update($input);

@@ -26,5 +26,10 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+Route::get('dashboard/data-keuangan/date-range', [DataKeuanganController::class, 'dataDateRange'])->name('data-keuangan.date-range');
+Route::get('dashboard/data-keuangan/print/date-range', [DataKeuanganController::class, 'print'])->name('data-keuangan.print');
 Route::resource('dashboard/data-keuangan', DataKeuanganController::class);
+
+// Route::get('/dashboard/rapot/tahun-ajaran/{tahun_ajaran_id}/kelas/{kelas_id}/semester/{semester}/ekstrakurikuler', 'Admin\RapotController@Ekstrakurikuler')->name('Ekstrakurikuler');
+
 Route::resource('dashboard/data-akun', DataAkunController::class);

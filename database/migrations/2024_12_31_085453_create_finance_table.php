@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer('price');
             $table->integer('cash_in');
             $table->integer('cash_out');
-            $table->integer('balance');
             $table->foreignId('user_id')
                   ->constrained('users')
                   ->cascadeOnUpdate()

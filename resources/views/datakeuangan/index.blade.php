@@ -9,7 +9,7 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <div class="container-fluid">
-      <div class="row mb-2">
+      <div class="row mb-3">
         <div class="col-sm-6">
           <h1>Data Keuangan</h1>
         </div>
@@ -19,12 +19,6 @@
             <li class="breadcrumb-item"><a href="{{ route('dashboard.index')}}">Dashboard</a></li>
             <li class="breadcrumb-item active">Data Keuangan</li>
           </ol>
-        </div>
-        <div class="col-sm-12 mt-3">
-          <div class="float-left">
-            {{-- <a class="btn btn-success" href="{{ route('kelas.create') }}"> Tambah Data</a> --}}
-            <a class="btn btn-success" href="{{ route('data-keuangan.create') }}"> Tambah Data</a>
-          </div>
         </div>
       </div>
     </div>
@@ -38,50 +32,26 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body">
-            @if(session()->has('success'))
-                <div class="alert alert-success alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                {{ session()->get('success') }}
+              <form action="{{ route('data-keuangan.date-range') }}" method="GET" enctype="multipart/form-data">
+                {{-- @csrf --}}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Dari Tanggal</label>
+                            <input type="date" class="form-control" name="start_date" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Sampai Tanggal</label>
+                            <input type="date" class="form-control" name="end_date" required>
+                        </div>
+                    </div>
                 </div>
-            @endif
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th width="2%">No</th>
-                    <th>Tanggal</th>
-                    <th>Perihal</th>
-                    <th>PCS</th>
-                    <th>Penanggung Jawab</th>
-                    <th>Masuk</th>
-                    <th>Keluar</th>
-                    <th>Saldo</th>
-                    <th width="15%">Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    @foreach($finances as $key => $value)
-                  <tr>
-                    <td>{{ $key+1 }}</td>
-                    <td>{{ $value->date }}</td>
-                    <td>{{ $value->about }}</td>
-                    <td>{{ $value->pcs }}</td>
-                    <td>{{ $value->user->name }}</td>
-                    <td>{{ $value->cash_in }}</td>
-                    <td>{{ $value->cash_out }}</td>
-                    <td>{{ $value->price }}</td>
-                    <td>
-                        <form action="{{ url('dashboard/data-keuangan', $value->id) }}" method="POST">
-                          <a class="btn btn-primary" href="{{ url('dashboard/data-keuangan/'.$value->id.'/edit') }}">Ubah</a>
-                          @csrf
-                          @method('DELETE')
-                          <button type="submit" class="btn btn-danger"
-                            onclick="return confirm('Hapus Data?')">Hapus</button>
-                        </form>
-                      </td>
-                  </tr>
-                  @endforeach
-                </tbody>
-              </table>
+                <div class="card-footer text-center">
+                  <button type="submit" class="btn btn-primary">Cari</button>
+                </div>
+              </form>
             </div>
             <!-- /.card-body -->
           </div>
